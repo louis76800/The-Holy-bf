@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ data.pageTitle }} | {{  constant('SITE_TITLE') }}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+                <h1>Ajouter un article</h1>
+                <div>
+                {% if data.error is not empty %}
+                    <div class='alert alert-danger' role='alert'>{{ data.error.message }}</div>
+                {% endif %}
+                </div>
+                <form method='post' enctype="multipart/form-data">
+                    <div class="input-content">
+                        <label for="title">Titre*</label>
+                        <input type="text" id="title" name="title"
+                                {% if data.article.getTitle() is not empty %}
+                                value="{{ data.article.getTitle() }}"
+                                {% endif %}
+                        >
+                    </div>
+                    <div>
+                        <label for="slug">Slug (url)*</label>
+                        <input type="text" id="slug" name="slug"
+                                {% if data.article.getSlug() is not empty %}
+                                    value="{{ data.article.getSlug() }}"
+                                {% endif %}
+                        >
+                    </div>
+                    <div>
+                        <label>Image(s) taille max : 1 Mo (jpg / jpeg / png )</label>
+                        <input type="file" name="pictures[]" id="formFile" multiple>
+                    </div>
+
+                    <legend class="col-form-label col-sm-2 pt-0">Catégories*</legend>
+                    {% for category in data.categories %}
+                    <div>
+                        <label>
+                            {{ category.CAT_NAME }}
+                        </label>
+                        <input type="checkbox" name="categories[]" value="{{ category.CAT_ID }}" id="{{ category.CAT_ID }}"
+                                {% if category.CAT_ID in data.article.getCategoriesId() %}
+                                    checked
+                                {% endif %}
+                        >
+                    </div>
+
+                    {% endfor %}
+
+                    <div>
+                        <label>Contenu*</label>
+                        <textarea id="content" name="content" rows="10">{% if data.article.getContent() is not empty %}{{ data.article.getContent() }}{% endif %}</textarea>
+                    </div>
+                    <div>
+                    <button type="submit" class="btn button">Ajouter</button>
+                    </div>
+                </form>
+</div>
+
+{% endblock %}

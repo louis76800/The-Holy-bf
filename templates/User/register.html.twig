@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<link rel="stylesheet" href="/assets/css/users.css">
+	<div class="card">
+		<div>
+			<div>
+				<div class="espace ">
+					<form method="post" class="text_center">
+						<p class="subheader">Inscription</p>
+						{% if error %}
+							<p class="alert-danger text-white">{{error}}</p>
+						{% endif %}
+						<p class="quote">
+							Entrez vos informations :</p>
+						<div class="form-group">
+							<label for="username" class="body">Pseudo</label>
+							<input class="form_input placeholder" type="text" id="username" name="username" placeholder="Pseudo" required>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="body">E-mail</label>
+							<input class="form_input placeholder" type="mail" id="mail" name="mail" placeholder="E-mail" required>
+
+						</div>
+						<div class="form-group">
+							<label for="password_first" class="body">Mot de passe</label>
+							<input class="form_input placeholder" type="password" id="password_first" name="password_first" placeholder="*****" required>
+						</div>
+						<div class="form-group">
+							<label for="password_confirm" class="body">Répetez le mot de passe</label>
+							<input class="form_input placeholder" type="password" id="password_confirm" name="password_confirm" placeholder="*****" required>
+						</div>
+						<input class="btn button" type="submit" name="submit" value="Inscription">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

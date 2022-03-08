@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{  constant('SITE_TITLE') }}
+{% endblock %}
+{% block content %}
+	<head>
+		<link rel="stylesheet" href="/assets/css/users.css">
+	</head>
+	<div class="card">
+		<h1>Modifier l'utilisateur :
+			{{ username }}</h1>
+		<br>
+
+		<form method='post' enctype="multipart/form-data">
+			<label for="email">Email</label>
+			<input type="text" id="email" name="email" class="form-control" value="{{ mail }}">
+			<br>
+			<label for="nickname">Pseudo</label>
+			<input type="text" id="nickname" name="nickname" class="form-control" value="{{ username }}">
+			<label for="role">Rôle</label>
+			<select id="role" name="role" class="form-control" value="{{ role }}">
+				<option name="role" value="2">Membre</option>
+				<option name="role" value="1">Admin</option>
+				<option name="role" value="0">Désactiver</option>
+			</select>
+			<br>
+			<button type="submit" name="submit" class="btn btn-primary">Modifier</button>
+		</form>
+	</div>
+{% endblock %}

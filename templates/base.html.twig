@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="/assets/img/logo.png"/>
+	<link href="/assets/css/reboot.css" rel="stylesheet" type="text/css">
+	<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+	{% block css %}{# Links CSS #}{% endblock %}
+
+	<title>
+		{% block title %}The Holy BF
+		{% endblock %}
+	</title>
+
+</head>
+<body class="background ">
+
+
+
+
+<div class="nav ">
+	<input type="checkbox" id="nav-check">
+	<div class="nav-header">
+		<div class="nav-title">
+			<div class="text_center  ">
+					<img class="logo border image_center" src="/assets/img/logo.png" alt="Logo">
+				<a class="headline margin text_center" href="/">The Holy BF</a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-btn ">
+		<label for="nav-check">
+			<span></span>
+			<span></span>
+			<span></span>
+		</label>
+	</div>
+	<div class="nav-links subheader ">
+		{% if session.user.Role_ID == 1 %}
+			<a class="subheader top" href="/admin" tabindex="-1" aria-disabled="false">Administration</a>
+		{% endif %}
+
+		<a class="subheader top" aria-current="page" href="/article">Blog</a>
+		<a class="subheader top" href="/topic">Forum</a>
+		<a class="subheader top" href="/contact">Contact</a>
+		{% if session.user.Role_ID != null %}
+			<a class="subheader top" href="/User/logout" tabindex="-1" aria-disabled="false">Déconnexion</a>
+		{% else %}
+			<a class="subheader top" href="/User/login" tabindex="-1" aria-disabled="false">Connexion</a>
+		{% endif %}
+	</div>
+</div>
+
+
+
+{% block content %}{% endblock %}
+<script src="/assets/js/fontawesome5.min.js" defer type="text/javascript"></script>
+{% block javascripts %}{# Links JS #}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ forum.pageTitle }}
+	| The Holy BF
+{% endblock %}
+{% block css %}
+
+<link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="container bleu padding  margin">
+	<div class=" block_topic">
+		<div class=" block_topic">
+			<div class=" rounded margin padding white">
+				<p class="subheader"><img  class="image_admin " src="/assets/img/profil.png" alt=""> {{ topic.USER_NICKNAME }}</p>
+				<p class="small R_A_L">{{ topic.TOPIC_DATE | format_datetime(locale='fr')}}</p>
+				<p class="title R_A_L">{{ topic.TOPIC_TITLE }}</p>
+				<p class="subheader R_A_L">{{ topic.TOPIC_DESCRIPTION  }}</p>
+				<div>
+				</div>
+			</div>
+			<div class=" block_topic ">
+				<p class="title">Discussion :</p>
+				<form method="post" action="/Topic/messageadd" class="espace">
+					<textarea  type="textarea" id="MessBody" minlength="2" placeholder="Votre message" name="MessBody"  class="placeholder"></textarea>
+					<input type="hidden" id="Topic" name="Topic" value={{ topic.TOPIC_ID }} />
+					<input type="hidden" id="auteur" value=""/>
+					<input type="hidden" id="MessDate" value=""/>
+					<button class="btn btn-cyan " name="submit" type="submit">Envoyer</button>
+				</form>
+				{% for message in messages%}
+					<div class=" block_topic  espace rounded margin white padding R_A_L">
+						<p class="subheader"><img  class="image_admin " src="/assets/img/profil.png" alt=""> {{ message.USER_NICKNAME }}</p>
+						<p class="small">le {{ message.MESS_DATE | format_datetime(locale='fr')}}</p>
+						<p class="subheader">{{ message.MESS_BODY }}</p>
+						{% if session.user.Role_ID == 1 %}
+							<a class="delete text-danger" title="Supprimer" data-toggle="tooltip"href="/Topic/MessageDel/{{ topic.TOPIC_ID }}/{{ message.USER_ID }}/{{ message.MESS_ID }}"
+							   onclick="return confirm('Voulez-vous supprimer le message : {{ message.MESS_BODY }} ?')">
+								<i class="fas fa-trash-alt fa-md"></i>							</a>
+						{% elseif ( message.USER_ID == id ) %}
+							<a class="delete text-danger" title="Supprimer" data-toggle="tooltip"href="/Topic/MessageDel/{{ topic.TOPIC_ID }}/{{ message.USER_ID }}/{{ message.MESS_ID }}"
+							   onclick="return confirm('Voulez-vous supprimer le message : {{ message.MESS_BODY }} ?')">
+								<i class="fas fa-trash-alt fa-md"></i>							</a>
+						{% endif %}
+					</div>
+				{% endfor%}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

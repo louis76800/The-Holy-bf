@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{  constant('SITE_TITLE') }}
+{% endblock %}
+{% block css %}
+	<link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+	<div class="container-blog  ">
+		<h1 class="title ">Administration : Liste des utilisateurs du forum</h1>
+
+		<p class="subheader ">{{ userList|length }}
+			utilisateurs</p><br>
+		<div class=" btn btn-cyan ">
+
+			<a href="/user/register">
+				<i class="fa fa-plus espace"></i>
+				Ajouter (Inscription)</a>
+		</div>
+		<div class="espace"></div>
+		<table>
+
+
+			<thead>
+				<tr>
+					<th class="table-id subheader">
+						<b>#</b>
+					</th>
+					<th class=" subheader">
+						<b>Pseudo</b>
+					</th>
+					<th class=" subheader">
+						<b>Email</b>
+					</th>
+					<th class=" subheader">
+						<b>Role</b>
+					</th>
+					<th class=" subheader">
+						<b>Actions</b>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in userList %}
+					<tr>
+						<td data-label="#" class=" medium ">{{ user.USER_ID  }}</td>
+						<td data-label="Pseudo">{{ user.USER_NICKNAME }}</td>
+						<td data-label="E-Mail">{{ user.USER_MAIL}}</td>
+						<td data-label="Date de création">{{ user.ROLE_ID }}</td>
+						<td data-label="Action" class="table-action">
+							<a class="text-success show" title="Voir" data-toggle="tooltip" href="/user/show/{{ user.USER_ID }}">
+								<i class="fas fa-info-circle fa-md"></i>
+							</a>
+							<a class="text-primary edit" title="Modifier" data-toggle="tooltip" href="/User/edit/{{ user.USER_ID }}">
+								<i class="fas fa-edit fa-md"></i>
+							</a>
+							<a class="delete text-danger" title="Supprimer" data-toggle="tooltip" href="/user/deleteuser/{{ user.USER_ID }}" onclick="return confirm('Voulez-vous supprimer l\'utilisateur : {{ user.USER_NICKNAME }} ?')">
+								<i class="fas fa-trash-alt fa-md"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

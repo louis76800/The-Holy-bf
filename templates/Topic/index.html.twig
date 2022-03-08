@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ forum.pageTitle }}
+	| The Holy BF
+{% endblock %}
+{% block content %}
+
+	<div class="container  bleu padding margin">
+			<div class="  block_topic  ">
+				{% for topic in forum.topicList %}
+					<div class="espace  white  rounded">
+						<div class="padding margin topic_left align_topic">
+							<p class="title R_A_L">{{ topic.TOPIC_TITLE }}</p>
+							<p class="subheader R_A_L">{{ topic.TOPIC_DESCRIPTION  }}...<a class="none" href="/Topic/show/{{topic.TOPIC_ID }}">Lire la suite</a></p>
+						</div>
+						<div class="topic_right align_topic padding top white ">
+							<p class="small">Auteur : {{ topic.USER_NICKNAME }}</p>
+							<p class="small">Créé le : {{ topic.TOPIC_DATE| format_datetime(locale='fr') }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+	</div>
+{% endblock %}

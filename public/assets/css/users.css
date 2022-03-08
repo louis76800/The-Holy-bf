@@ -1,0 +1,230 @@
+@import url("./reboot.css");
+/**####################################
+**########## Couleurs #################
+**###################################*/
+/**###################################
+**########## Polices #################
+**##################################*/
+/**########################################
+**########## Text classes #################
+**#######################################*/
+@import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap");
+@import url("https://db.onlinewebfonts.com/c/7dca09e227fdfe16908cebb4244589e4?family=Georgia");
+@import url("https://fonts.googleapis.com/css2?family=Philosopher&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+.right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  vertical-align: baseline;
+}
+
+.search {
+  align-self: center;
+}
+
+.table-bordered {
+  border: 1px solid black;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  background-color: #e3e2e2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid #eeeeee;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(90deg, #6d1082 17%, #65b2d1 63%);
+  padding: 18px 0;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 18px 0;
+}
+.table-row:nth-of-type(odd) {
+  background: #eeeeee;
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.header__item {
+  text-transform: uppercase;
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.filter__link::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.filter__link.desc::after {
+  content: "(desc)";
+}
+.filter__link.asc::after {
+  content: "(asc)";
+}
+
+.btn {
+  color: black;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 10px 10px 10px 10px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.btn:hover {
+  text-decoration: none;
+  color: black;
+}
+.btn:focus {
+  color: linear-gradient(90deg, #65b2d1 17%, #6d1082 63%);
+  text-decoration: underline solid;
+}
+
+.success {
+  border-color: greenyellow;
+  background-color: #36f548;
+}
+
+.info {
+  border-color: yellowgreen;
+  background-color: yellow;
+}
+
+.danger {
+  border-color: red;
+  background-color: red;
+}
+
+.text-light {
+  color: white;
+}
+
+.card {
+  border: 1px solid #2699fb;
+  border-radius: 30px;
+  width: 50vw;
+  height: max-content;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  padding: 25px;
+  background-color: #cee8fd;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    border: 1px solid #2699fb;
+    border-radius: 30px;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    background-color: #cee8fd;
+  }
+}
+.card .title {
+  color: #2699fb;
+  font-weight: bolder;
+}
+
+.card label {
+  color: #2699fb;
+  display: block;
+  font-weight: bold;
+}
+
+.form_input {
+  background-color: #f1f9ff;
+  color: #2699fb;
+  border-radius: 8px;
+  border: 1px solid #bce0fd;
+  text-align: center;
+}
+
+.form_input::placeholder {
+  color: #60b0fb;
+  text-align: center;
+}
+
+.form-group {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background-color: #2699fb;
+  color: white;
+  border: none;
+}
+
+.alert-success {
+  background-color: #baff53;
+}
+
+.alert-danger {
+  background-color: #ff5733;
+}
+
+.alert {
+  border-radius: 50px;
+  border: solid black 1px;
+}
+
+/*# sourceMappingURL=users.css.map */

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<link rel="stylesheet" href="/assets/css/users.css">
+	<div class="card ">
+		<div>
+			<div>
+				<div class="espace ">
+					<form method="post" class="text_center">
+						<p class="subheader">Connexion</p>
+						{% if error %}
+							<p class="alert-danger">{{error}}</p>
+						{% endif %}
+						<p class="quote">
+							Entrez votre email et votre mot de passe</p>
+						<div class="form-group">
+							<label for="email" class="body">E-mail</label>
+							<input class="form_input placeholder" type="text" name="email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="password" class="body">Mot de passe</label>
+							<input class="form_input placeholder" type="password" name="password" placeholder="Mot de passe">
+						</div>
+						<input class="btn button" type="submit" name="submit" value="Connexion">
+					</form>
+					<div class="text_center">
+						<a class="margin" href="/user/register">
+							<button class="btn button">S'enregistrer</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

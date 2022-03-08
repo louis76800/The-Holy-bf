@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{{ data.article.ART_TITLE }}{% endblock %}</title>
+    {% block css %}{% endblock %}
+    {% block javascript %}{% endblock %}
+</head>
+    <body>
+    {% block content %}
+        <div class="container">
+            <div>
+                <article>
+                    {% for media in data.medias %}
+                        <div>
+                            <img src="http://www.holy-bf.di/assets/uploads/blog/{{ media.MED_NAME }}" alt="{{ media.MED_ALT }}" width="300">
+                        </div>
+                    {% endfor %}
+                    <h1>{{ data.article.ART_TITLE }}</h1>
+                    <div>
+                        <h4>Catégories :
+                        {% for category in data.categories %}
+                            <span>{{ category.CAT_NAME }}</span>&nbsp;&nbsp;
+                        {% endfor %}
+                        </h4>
+                    </div>
+                    <p>Auteur : {{ data.user.USER_NICKNAME }}</p>
+                    <p>{{ data.article.ART_BODY | nl2br }}</p>
+                    <p>{{ data.article.ART_DATEADD | format_datetime(locale='fr') }}</p>
+                </article>
+            </div>
+        </div>
+    {% endblock %}
+    </body>
+</html>

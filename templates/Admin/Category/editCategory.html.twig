@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ data.pageTitle }}
+    | The Holy BF
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1> {{ data.pageTitle }} - {{ data.curCategory['CAT_NAME'] }}</h1>
+    <form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" class="form-control" PLACEHOLDER="{{data.curCategory['CAT_NAME']  }}"
+
+                    value=
+               {% if data.curCategory['CAT_NAME'] %}
+                    "{{ data.category['CAT_NAME'] }}"
+               {% else %}
+                    "{{ data.category['CAT_NAME'] }}
+                {% endif %}
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="descript">Description</label>
+        <input type="text" id="descript" name="descript" class="form-control" PLACEHOLDER="{{data.curCategory['CAT_DESCRIPTION']  }}"
+
+               value=
+               {% if data.curCategory['CAT_DESCRIPTION'] %}
+               "{{ data.category['CAT_DESCRIPTION'] }}"
+        {% else %}
+            "{{ data.category['CAT_DESCRIPTION'] }}
+        {% endif %}
+    </div>
+         <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+    </div>
+    <br>
+{% endblock %}
+
+
+

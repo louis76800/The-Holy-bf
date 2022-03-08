@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ Categorie.pageTitle }} | {{  constant('SITE_TITLE') }}
+{% endblock %}
+{% block css %}
+    <link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+    <div class="container-blog">
+        <h1 class="title ">Liste des Catégories</h1>
+         <div class="table-title ">
+             <div class="">
+                 <div class="">
+                     <p class="subheader ">{{ categories.categoryList|length }}
+                         catégories</p>
+                 </div>
+                 <div class="btn btn-cyan ">
+                     <a href="/Cat/add" class=" add-new ">
+                         <i class="fa fa-plus "></i>
+                         Ajouter</a>
+                 </div>
+                 <div style="margin-top: 110px"> </div>
+             </div>
+         </div>
+         <table class="table table-bordered">
+             <thead>
+             <tr>
+                 <th>#</th>
+                 <th>Catégorie</th>
+                 <th>Description</th>
+                 <th>Actions</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for category in categories.categoryList %}
+                 <tr>
+                     <td data-label="#">{{ category.CAT_ID }}</td>
+                     <td data-label="Titre">{{ category.CAT_NAME }}</td>
+                     <td data-label="Description">{{ category.CAT_DESCRIPTION }}</td><td>
+                         <a class="edit" title="Modifier" data-toggle="tooltip" href="updateOne/{{ category.CAT_ID }}" >
+                             <i class="fas fa-edit fa-md"></i></a></td>
+                 </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+     </div>
+{% endblock %}
+

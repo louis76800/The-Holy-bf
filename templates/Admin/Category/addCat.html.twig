@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ data.pageTitle }}
+    | The Holy BF
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1> {{ data.pageTitle }}</h1>
+
+        <h2> Ajouter une catégorie </h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" class="form-control" placeholder="nom de la catégorie à insérer" required
+                {%  if data.category.getName() is not empty %}
+                    value="{{ data.category.getName() }}"
+                {% endif %}
+                >
+            </div>
+            <br>
+            <div>
+                <label for="descript">Description</label>
+
+                <input type="text" id="descript" name ="descript" class="form-control" placeholder="description ..."  required
+                        {%  if data.category.getDescription() is not empty %}
+                            value="{{ data.category.getDescription() }}"
+                        {% endif %}
+            <br>
+            <button type="submit" class="btn button">Ajouter</button>
+            </div>
+        </form>
+
+{% endblock %}
+

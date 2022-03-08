@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Contactez-nous | {{  constant('SITE_TITLE') }}
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+        <div class="espace ">
+            <p class="title text_center">Contactez-nous !</p>
+            {% if error is not empty %}
+                <div class="alert-danger">{{ error }}</div>
+            {% endif %}
+            {% if success is not empty %}
+                <div class="alert-success">{{ success }}</div>
+            {% endif %}
+            <form name="contact" method="post" class="text_center">
+                <br>
+                <input class="placeholder espace" type="text" name="name" placeholder="Votre nom" value="{{ post['name'] }}">
+                <br>
+                <input class="placeholder espace" type="email" name="mail" placeholder="Votre mail" value="{{ post['mail'] }}">
+                <br>
+                <textarea  class="placeholder espace" placeholder="Votre message" name="message">{{ post['message'] }}</textarea>
+                <br>
+                <input class="button btn espace" type="submit">
+            </form>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+

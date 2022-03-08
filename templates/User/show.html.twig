@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+
+	{{  constant('SITE_TITLE') }}
+{% endblock %}
+
+{% block content %}
+	<link rel="stylesheet" href="/assets/css/users.css">
+	<body>
+		<div class="card">
+			<h1>Utilisateur n°
+				{{user.USER_ID}}</h1>
+			<p>Pseudo :
+				{{ user.USER_NICKNAME }}</p>
+			<p>E-mail :
+				{{ user.USER_MAIL }}</p>
+			<p>Role :
+				{% if user.ROLE_ID == 0 %}
+					Désactivé
+				{% elseif user.ROLE_ID == 1 %}
+					Administrateur
+				{% else %}
+					Membre
+				{% endif %}
+			</p>
+		</div>
+	</body>
+{% endblock %}

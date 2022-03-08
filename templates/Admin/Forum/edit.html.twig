@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ data.pageTitle }} | {{  constant('SITE_TITLE') }}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="row">
+            <section class="col-12">
+                <p class="title">Modifier le topic : {{ data.topic.TOPIC_TITLE }}</p>
+                <br>
+                {% if data.error is not empty %}
+                    <div class='alert alert-danger' role='alert'>{{ data.error.message }}</div>
+                {% endif %}
+                <form method='post' enctype="multipTOPIC/form-data">
+                    <div class="form-group">
+                        <label class="subheader" for="title">Titre :</label>
+                        <input type="text" id="title" name="title" minlength="5" class="medium" value="{{ data.topic.TOPIC_TITLE }}">
+                    </div>
+                    <br>
+                        <label class="subheader" for="slug">Slug (url) :</label>
+                        <input type="text" id="slug" name="slug" minlength="5" class="medium" value="{{ data.topic.TOPIC_URL }}">
+                    <br>
+                    <legend class="subheader">Catégories :</legend>
+                    {% for category in data.categoriesBDD %}
+                            <label class="medium" for="{{ category.CAT_NAME }}">
+                                {{ category.CAT_NAME }}
+                            </label>
+                            <input class="medium" type="checkbox" name="categories[]" value="{{ category.CAT_ID }}" id="{{ category.CAT_ID }}"
+                             {% if category.CAT_ID in data.categoriesTOPIC %}
+                                 checked
+                             {% endif %}
+                            >
+                        <br>
+                    {% endfor %}
+                        <label class="subheader" for="content">Contenu :</label>
+                        <textarea type="textarea" id="content" name="content" minlength="5" class="medium"  value=""> {{ data.topic.TOPIC_DESCRIPTION }}</textarea>
+                    <br>
+                    <button type="submit" class="btn button">Modifier</button>
+                </form>
+            </section>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ data.pageTitle }} | {{  constant('SITE_TITLE') }}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="row">
+            <section class="col-12">
+                <h1>Modifier l'article : {{ data.article.ART_TITLE }}</h1>
+                <br>
+                {% if data.error is not empty %}
+                    <div class='alert alert-danger' role='alert'>{{ data.error.message }}</div>
+                {% endif %}
+                <form method='post' enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">Titre*</label>
+                        <input type="text" id="title" name="title" class="form-control" value=
+                            {% if data.post.title %}
+                                "{{ data.post.title }}"
+                            {% else %}
+                                "{{ data.article.ART_TITLE }}"
+                            {% endif %}
+                        >
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="slug">Slug (url)*</label>
+                        <input type="text" id="slug" name="slug" class="form-control" value=
+                            {% if data.post.slug %}
+                                "{{ data.post.slug }}"
+                            {% else %}
+                                "{{ data.article.ART_URL }}"
+                            {% endif %}
+                        >
+                    </div>
+                    <br>
+                    <legend class="col-form-label col-sm-2 pt-0">Catégories*</legend>
+                    {% for category in data.categoriesBDD %}
+                        <div class="form-check">
+                            <label class="form-check-label" for="{{ category.CAT_NAME }}">
+                                {{ category.CAT_NAME }}
+                            </label>
+                            <input class="form-check-input" type="checkbox" name="categories[]" value="{{ category.CAT_ID }}" id="{{ category.CAT_ID }}"
+                                    {% if category.CAT_ID in data.post.categories %}
+                                        checked
+                                    {% elseif category.CAT_ID in data.categoriesART and not data.post.categories %}
+                                        checked
+                                    {% endif %}
+                            >
+                        </div>
+                    {% endfor %}
+                    <br>
+                    {% if data.picturesART %}
+                        <legend class="col-form-label col-sm-3 pt-0">Cocher les images à supprimer</legend>
+                        {% for pictureDel in data.picturesART %}
+                            <div class="form-check">
+                                <label class="form-check-label" for="{{ pictureDel.MED_NAME }}">
+                                    <img src="/assets/uploads/blog/{{ pictureDel.MED_NAME }}" alt="{{ pictureDel.MED_ALT }}" width="100">
+                                    {{ pictureDel.MED_NAME }}
+                                </label>
+                                <input class="form-check-input" type="checkbox" name="picturesDel[]" value="{{ pictureDel.MED_ID }}" id="{{ pictureDel.MED_ID }}"
+                                        {% if pictureDel.MED_ID in data.post.picturesDelId %}
+                                            checked
+                                        {% endif %}
+                                >
+                            </div>
+                        {% endfor %}
+                        <br>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="formFile" class="form-label">Ajouter de nouvelles Images / taille max : 1 Mo (jpg / jpeg / png )</label>
+                        <input class="form-control" type="file" name="pictures[]" id="formFile" multiple>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="content">Contenu*</label>
+                        <textarea id="content" name="content" class="form-control" rows="10">{% if data.post.content %}{{ data.post.content }}{% else %}{{ data.article.ART_BODY }}{% endif %}</textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn button">Modifier</button>
+                </form>
+            </section>
+        </div>
+    </div>
+{% endblock %}

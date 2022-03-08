@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ blog.pageTitle }} | The Holy BF
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+	<section class="articles">
+		{% for article in blog.articleList %}
+		<div class="article">
+			<div class="article-left">
+				{% for media in blog.medias[article.ART_ID] | slice(0, 1) %}
+					<img src="/assets/uploads/blog/{{ media.MED_NAME }}" alt="{{ media.MED_ALT }}" width="200">
+				{% endfor %}
+			</div>
+			<div class="article-right">
+				<p class="article-date">{{ article.ART_DATEADD | format_datetime(locale='fr') }}</p>
+				<h2 class="article-titre"><a href="/article/show/{{article.ART_ID}}">{{ article.ART_TITLE }}</a></h2>
+				<p class="article-description">{{ article.ART_BODY|u.truncate(200, '...', false) }} <br><a href="/article/show/{{article.ART_ID}}">Lire la suite</a></p>
+				<p class="article-auteur">{{ blog.user[article.ART_ID].USER_NICKNAME }}</p>
+				<p class="article-categorie">
+					{% for category in blog.categories[article.ART_ID] %}
+						<a href="/article/category/{{ category.CAT_ID }}">{{ category.CAT_NAME }}</a>
+					{% endfor %}
+				</p>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+{% endblock %}

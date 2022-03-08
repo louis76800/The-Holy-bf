@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ article.ART_TITLE }} | {{  constant('SITE_TITLE') }}
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<section class="articles">
+	<div class="article-card">
+		{% if success is not empty %}
+			<div class='alert alert-success' role='alert'>{{ success }}</div>
+		{% endif %}
+		{% if error is not empty %}
+			<div class='alert alert-danger' role='alert'>{{ error }}</div>
+		{% endif %}
+
+		{% for media in medias | slice(0, 1) %}
+			<div class="article-card-image">
+				<img src="/assets/uploads/blog/{{ media.MED_NAME }}" alt="{{ media.MED_ALT }}" width="300">
+			</div>
+		{% endfor %}
+
+			<div class="article-card-body">
+
+
+				<div class="article-card-date">
+					<time>{{ article.ART_DATEADD | format_datetime(locale='fr') }}</time>
+				</div>
+
+
+				<div class="article-card-title">
+					<h1>{{ article.ART_TITLE }}</h1>
+				</div>
+
+				<div class="article-card-content">
+					<p>{{ article.ART_BODY | nl2br }}</p>
+				</div>
+
+				<div class="article-card-date">
+					<p>{{ user.USER_NICKNAME }}</p>
+				</div>
+				<p class="article-card-date">
+					{% for category in categories %}
+						<a href="/article/category/{{ category.CAT_ID }}">{{ category.CAT_NAME }}</a>
+					{% endfor %}
+				</p>
+				<p class="article-print">
+				<a class="btn-print btn-cyan" href="/article/print/{{ article.ART_ID }}">Imprimer</a>
+				</p>
+
+			</div>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,6 @@
+var/
+src/Model/BDD.php
+.idea/*
+public/assets/uploads/blog/*
+logs/
+src/Router.php

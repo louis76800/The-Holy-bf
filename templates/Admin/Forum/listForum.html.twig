@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ forum.pageTitle }}
+	| The Holy
+{% endblock %}
+{% block css %}
+	<link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="container-blog  ">
+	<h1 class="title ">Administration : Liste des topics du forum</h1>
+		{% if forum.success is not empty %}
+			<div class='alert  alert-success' role='alert'>{{ forum.success.message }}</div>
+		{% endif %}
+		{% if forum.error is not empty %}
+			<div class='alert  alert-danger' role='alert'>{{ forum.error.message }}</div>
+		{% endif %}
+	<p class="subheader ">{{ forum.pagination.nbMaxElements }} topic(s)</p>
+
+
+				<section class="search " >
+					<form method="get" action="/admin/listforum" class="form-content input-content ">
+						<input class="placeholder " type="search" name="q"  placeholder="Rechercher" aria-label="Search"
+						{% if forum.getSearch is not empty %}
+							value="{{ forum.getSearch }}"
+						{% endif %}>
+					</form>
+					<div class=" btn btn-cyan ">
+						<a href="/Topic/add/{{ topic.TOPIC_ID }}" class="add-new">
+							<i class="fa fa-plus"></i>Ajouter un topic</a>
+					</div>
+					<div class=""> </div>
+				</section>
+	<table>
+
+	<caption class="text-right ">{{ forum.pagination.htmlRender | raw }}</caption>
+
+					<thead>
+						<tr>
+							<th class="table-id subheader"><b>#</b></th>
+							<th class=" subheader"><b>Date de création</b></th>
+							<th class=" subheader"><b>Titre</b></th>
+							<th class=" subheader"><b>Actions</b></th>
+						</tr>
+					</thead>
+					<tbody >
+
+					{% for topic in forum.topicList %}
+						<tr>
+							<td data-label="#" class=" medium ">{{ topic.TOPIC_ID }}</td>
+							<td data-label="Date de création" >{{ topic.TOPIC_DATE }}</td>
+							<td data-label="Titre " >{{ topic.TOPIC_TITLE }}</td>
+							<td data-label="Action" class="table-action">
+								<a class="text-success show" title="Voir" data-toggle="tooltip" href="/Topic/show/{{ topic.TOPIC_ID }}">
+									<i class="fas fa-info-circle fa-md"></i></a>
+								<a class="text-primary edit" title="Modifier" data-toggle="tooltip"href="/Topic/update/{{ topic.TOPIC_ID }}">
+									<i class="fas fa-edit fa-md"></i></a>
+								<a class="delete text-danger" title="Supprimer" data-toggle="tooltip"href="/Topic/delete/{{ topic.TOPIC_ID }}"
+									onclick="return confirm('Voulez-vous supprimer le topic : {{ topic.TOPIC_TITLE }} ?')">
+									<i class="fas fa-trash-alt fa-md"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+{% endblock %}

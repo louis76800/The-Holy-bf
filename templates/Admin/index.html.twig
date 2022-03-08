@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ pageTitle }}
+	| The Holy BF
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<p class="title">{{ pageTitle }}</p>
+		<p class="subheader">Sélectionner une rubrique à administrer :</p>
+		<ul class="menu-admin">
+			<li>
+				<a class="none subheader" href="admin/listBlog">Blog</a>
+			</li>
+			<li>
+				<a  class="none subheader" href="admin/listForum">Forum</a>
+			</li>
+			<li>
+				<a class=" none subheader" href="cat/listCategory">Catégories</a> {# TODO voir pour appel fonction depuis adminController #}
+			</li>
+			<li>
+				<a class=" none subheader" href="user/index">Utilisateurs</a>
+			</li>
+		</ul>
+</div>
+{% endblock %}
